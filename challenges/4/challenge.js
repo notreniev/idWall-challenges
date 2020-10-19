@@ -80,15 +80,13 @@ const normalizeData = unormalized => {
             {
                 "results": {
                     "${id}": {
-                        "id": "${id}", 
-                        "user": "${user.name}", 
-                        "reports": "[${reports[0].id}]"
+                        id: "${id}", 
+                        user: "${user.id}", 
+                        reports: ["${reports[0].id}"]
                     }
                 },
                 "users": {
-                    ${user.id}: {
-                        "${user.id}": "${user.id}", "name": "${user.name}"
-                    }
+                    "${user.id}": { "id": "${user.id}", "name": "${user.name}"}
                 },
                 "reports": {
                     "${reports[0].id}": {
@@ -96,6 +94,7 @@ const normalizeData = unormalized => {
                         "user": "${user.id}", 
                         "document", "${reports[0].result.document}", 
                         "status", "${reports[0].result.status}"
+                    }
                 }
             }
         `
