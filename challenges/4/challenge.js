@@ -76,6 +76,8 @@ const normalizeData = unormalized => {
         reports
     } = unormalized
 
+    const reportsList = reports.map(re => console.log('re', re))
+
     const normalized = `
             {
                 "results": {
