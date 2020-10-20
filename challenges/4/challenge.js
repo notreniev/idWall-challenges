@@ -53,21 +53,45 @@
  */
 
 
-const unormalized = {
-    "id": "6197b77e-3942-11ea-a137-2e728ce88125",
-    "user": {
-        "id": "6197ba94",
-        "name": "Laura"
-    },
-    "reports": [{
-        "id": "51ddf1a9",
-        "result": {
-            "document": "356.4325-10",
-            "status": "em análise",
-        }
-    }]
-}
+/** Parametro de entrada */
+// const unormalized = {
+//     "id": "6197b77e-3942-11ea-a137-2e728ce88125",
+//     "user": {
+//         "id": "6197ba94",
+//         "name": "Laura"
+//     },
+//     "reports": [{
+//         "id": "51ddf1a9",
+//         "result": {
+//             "document": "356.4325-10",
+//             "status": "em análise",
+//         }
+//     }]
+// }
 
+
+const unormalized = {
+    id: '3942-2e728ce88125-11ea-a137-a98dy12uhd',
+    user: {
+        id: '90013adv',
+        name: 'Milson',
+    },
+    reports: [{
+            id: '512dg5f1a9',
+            result: {
+                document: '356.4325-10',
+                status: 'em análise',
+            },
+        },
+        {
+            id: '01223saf',
+            result: {
+                document: '123.09312-99',
+                status: 'concluido',
+            },
+        },
+    ],
+}
 
 const normalizeData = unormalized => {
     const {
@@ -76,27 +100,37 @@ const normalizeData = unormalized => {
         reports
     } = unormalized
 
-    const reportsList = reports.map(re => console.log('re', re))
+    const reportsList = reports.map((report) => {
+        return `'${report.id}': {
+                        'id': '${report.id}',
+                        'user': '${user.id}',
+                        'document': '${report.result.document}',
+                        'status': '${report.result.status}'
+                    }`
+    })
+
+    const getReportsArray = (reports) => {
+        const retorno = []
+        reports.forEach((report, indice, array) => {
+            retorno.push(`'${report.id}'`)
+        })
+        return retorno
+    }
 
     const normalized = `
             {
-                "results": {
-                    "${id}": {
-                        id: "${id}", 
-                        user: "${user.id}", 
-                        reports: ["${reports[0].id}"]
+                'results': {
+                    '${id}': {
+                        id: '${id}', 
+                        user: '${user.id}', 
+                        reports: [${getReportsArray(reports)}]
                     }
                 },
-                "users": {
-                    "${user.id}": { "id": "${user.id}", "name": "${user.name}"}
+                'users': {
+                    '${user.id}': { 'id': '${user.id}', 'name': '${user.name}'}
                 },
-                "reports": {
-                    "${reports[0].id}": {
-                        "id": "${reports[0].id}", 
-                        "user": "${user.id}", 
-                        "document", "${reports[0].result.document}", 
-                        "status", "${reports[0].result.status}"
-                    }
+                'reports': {
+                    ${reportsList}
                 }
             }
         `
@@ -104,6 +138,7 @@ const normalizeData = unormalized => {
     return normalized
 }
 
-console.log(normalizeData(unormalized))
+//console.log(normalizeData(unormalized))
+
 
 module.exports = normalizeData

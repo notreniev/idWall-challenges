@@ -8,15 +8,13 @@ describe('Challenge 4', () => {
         id: '6197ba94',
         name: 'Laura',
       },
-      reports: [
-        {
-          id: '51ddf1a9',
-          result: {
-            document: '356.4325-10',
-            status: 'em análise',
-          },
+      reports: [{
+        id: '51ddf1a9',
+        result: {
+          document: '356.4325-10',
+          status: 'em análise',
         },
-      ],
+      }, ],
     }
 
     const normalized = {
@@ -28,7 +26,10 @@ describe('Challenge 4', () => {
         },
       },
       users: {
-        '6197ba94': { id: '6197ba94', name: 'Laura' },
+        '6197ba94': {
+          id: '6197ba94',
+          name: 'Laura'
+        },
       },
       reports: {
         '51ddf1a9': {
@@ -50,8 +51,7 @@ describe('Challenge 4', () => {
         id: '90013adv',
         name: 'Milson',
       },
-      reports: [
-        {
+      reports: [{
           id: '512dg5f1a9',
           result: {
             document: '356.4325-10',
@@ -77,7 +77,10 @@ describe('Challenge 4', () => {
         },
       },
       users: {
-        '90013adv': { id: '90013adv', name: 'Milson' },
+        '90013adv': {
+          id: '90013adv',
+          name: 'Milson'
+        },
       },
       reports: {
         '512dg5f1a9': {
