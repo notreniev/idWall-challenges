@@ -8,9 +8,8 @@
  * todos os argumentos providos.
  *
  */
-
-const sumArguments = arr.reduce((currentTotal, item) => {
+const sumArguments = (...arr) => arr.reduce((currentTotal, item) => {
     return currentTotal + item
-}, 0)
+})
 
 module.exports = sumArguments
