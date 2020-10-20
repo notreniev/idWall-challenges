@@ -28,6 +28,4 @@ const MDC = (a, b) => {
     return a
 }
 
-console.log(MDC(20, 33))
-
 module.exports = MDC

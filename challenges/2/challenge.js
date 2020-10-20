@@ -29,6 +29,4 @@ const sumPrimes = n => {
     return total
 }
 
-console.log(sumPrimes(15))
-
 module.exports = sumPrimes

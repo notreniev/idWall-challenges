@@ -101,35 +101,35 @@ const normalizeData = unormalized => {
     } = unormalized
 
     const reportsList = reports.map((report) => {
-        return `'${report.id}': {
-                        'id': '${report.id}',
-                        'user': '${user.id}',
-                        'document': '${report.result.document}',
-                        'status': '${report.result.status}'
+        return `"${report.id}": {
+                        "id": "${report.id}",
+                        "user": "${user.id}",
+                        "document": "${report.result.document}",
+                        "status": "${report.result.status}"
                     }`
     })
 
     const getReportsArray = (reports) => {
         const retorno = []
         reports.forEach((report, indice, array) => {
-            retorno.push(`'${report.id}'`)
+            retorno.push(`"${report.id}"`)
         })
         return retorno
     }
 
     const normalized = `
             {
-                'results': {
-                    '${id}': {
-                        id: '${id}', 
-                        user: '${user.id}', 
+                "results": {
+                    "${id}": {
+                        id: "${id}", 
+                        user: "${user.id}", 
                         reports: [${getReportsArray(reports)}]
                     }
                 },
-                'users': {
-                    '${user.id}': { 'id': '${user.id}', 'name': '${user.name}'}
+                "users": {
+                    "${user.id}": { "id": "${user.id}", "name": "${user.name}"}
                 },
-                'reports': {
+                "reports": {
                     ${reportsList}
                 }
             }
@@ -137,8 +137,5 @@ const normalizeData = unormalized => {
 
     return normalized
 }
-
-//console.log(normalizeData(unormalized))
-
 
 module.exports = normalizeData
