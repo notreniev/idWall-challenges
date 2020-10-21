@@ -26,8 +26,8 @@
  * }
  */
 
-const htmlTemplate = `<div style="background-color: red;"> <img style="width: 120px; height: 20%" /></div>`
-// const htmlTemplate = `<div style="height: 20px; width: 60px;">`
+// const htmlTemplate = `<div style="background-color: red;"> <img style="width: 120px; height: 20%" /></div>`
+const htmlTemplate = `<div style="height: 20px; width: 60px;">`
 // const htmlTemplate = `
 // <div style="width: 442px;">
 //   <span style="height: 911px;"></span>
@@ -46,21 +46,14 @@ const extractSize = htmlTemplate => {
     var styles = [];
     for (var i = 0; i < matches.length; i++) {
         let str = matches[i].substring(7, matches[i].length - 1)
-        //console.log('undefined?', str !== 1 ? str : str)
         styles.push(str !== 1 ? str : undefined);
     }
 
-    // console.log(styles)
-
     const results = styles.filter((s, i) => {
         if (styles[i].startsWith('width') || styles[i].startsWith('height')) {
-            //console.log(styles[i])
             return styles
         }
     })
-
-    //console.log(results)
-
 
     let atributos = results[0].split(";")
     let prop1 = `"${atributos[0].split(":")[0].trim()}"`
@@ -70,8 +63,6 @@ const extractSize = htmlTemplate => {
     let val2 = `${parseInt(atributos[1].split(":")[1])}`
 
     const retorno = JSON.parse(`{${prop1}: ${val1},${prop2}: ${val2}}`)
-
-    console.log(retorno)
 
     return retorno
 }

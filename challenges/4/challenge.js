@@ -77,20 +77,12 @@ const unormalized = {
         name: 'Milson',
     },
     reports: [{
-            id: '512dg5f1a9',
-            result: {
-                document: '356.4325-10',
-                status: 'em análise',
-            },
+        id: '512dg5f1a9',
+        result: {
+            document: '356.4325-10',
+            status: 'em análise',
         },
-        {
-            id: '01223saf',
-            result: {
-                document: '123.09312-99',
-                status: 'concluido',
-            },
-        },
-    ],
+    }],
 }
 
 const normalizeData = unormalized => {
@@ -117,25 +109,25 @@ const normalizeData = unormalized => {
         return retorno
     }
 
-    const normalized = `
-            {
-                "results": {
-                    "${id}": {
-                        id: "${id}", 
-                        user: "${user.id}", 
-                        reports: [${getReportsArray(reports)}]
-                    }
-                },
-                "users": {
-                    "${user.id}": { "id": "${user.id}", "name": "${user.name}"}
-                },
-                "reports": {
-                    ${reportsList}
-                }
-            }
-        `
+    const normalized = `{
+                        "results": {
+                            "${id}": {
+                                "id": "${id}", 
+                                "user": "${user.id}", 
+                                "reports": [${getReportsArray(reports)}]
+                            }
+                        },
+                        "users": {
+                            "${user.id}": { "id": "${user.id}", "name": "${user.name}"}
+                        },
+                        "reports": {
+                            ${reportsList}
+                        }
+                    }`
 
-    return normalized
+    return JSON.parse(normalized)
 }
+
+normalizeData(unormalized)
 
 module.exports = normalizeData
