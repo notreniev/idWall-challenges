@@ -67,6 +67,4 @@ const extractSize = htmlTemplate => {
     return retorno
 }
 
-extractSize(htmlTemplate)
-
 module.exports = extractSize

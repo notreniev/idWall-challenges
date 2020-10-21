@@ -128,6 +128,4 @@ const normalizeData = unormalized => {
     return JSON.parse(normalized)
 }
 
-normalizeData(unormalized)
-
 module.exports = normalizeData
