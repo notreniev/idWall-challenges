@@ -26,24 +26,14 @@
  * }
  */
 
-// const htmlTemplate = `<div style="background-color: red;"> <img style="width: 120px; height: 20%" /></div>`
-const htmlTemplate = `<div style="height: 20px; width: 60px;">`
+const htmlTemplate = `<div style="background-color: red;"> <img style="width: 120px; height: 20%" /></div>`
+// const htmlTemplate = `<div style="height: 20px; width: 60px;">`
 // const htmlTemplate = `
 // <div style="width: 442px;">
 //   <span style="height: 911px;"></span>
 //   <span style="height: 121px;"></span>
 // </div>
 // `
-
-const convertArrayToObject = (array, key) => {
-    const initialValue = {};
-    return array.reduce((obj, item) => {
-        return {
-            ...obj,
-            [item[key]]: item,
-        };
-    }, initialValue);
-};
 
 const extractSize = htmlTemplate => {
 
@@ -55,7 +45,9 @@ const extractSize = htmlTemplate => {
     const matches = htmlTemplate.match(/\bstyle=(['"])(.*?)\1/gi);
     var styles = [];
     for (var i = 0; i < matches.length; i++) {
-        styles.push(matches[i].substring(7, matches[i].length - 1));
+        let str = matches[i].substring(7, matches[i].length - 1)
+        //console.log('undefined?', str !== 1 ? str : str)
+        styles.push(str !== 1 ? str : undefined);
     }
 
     // console.log(styles)
